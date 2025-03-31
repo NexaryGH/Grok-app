@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+    <header>
+        <p class="welcome-text">Tu perfil,</p>
+        <h1 class="user-name" id="user-name">Usuario</h1>
+        <p class="date" id="current-date"></p>
+    </header>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-photo-container">
+                <img src="https://via.placeholder.com/120" alt="Profile Photo" class="profile-photo" id="profile-photo">
+                <button class="photo-edit-button" id="trigger-photo-upload">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label for="profile-name" class="form-label">Nombre</label>
+                <input type="text" id="profile-name" class="form-input" placeholder="Tu nombre">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Foto de perfil</label>
+                <div class="file-upload">
+                    <label for="profile-photo-input" class="file-upload-label">
+                        <div class="file-upload-text">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Arrastra tu imagen o haz clic para seleccionar</span>
+                            <small>PNG, JPG o GIF (max. 5MB)</small>
+                        </div>
+                    </label>
+                    <input type="file" id="profile-photo-input" accept="image/*">
+                    <div class="file-name" id="file-name"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="theme-select" class="form-label">Tema Base</label>
+                <div class="select-wrapper">
+                    <select id="theme-select" class="form-select">
+                        <option value="light">Claro</option>
+                        <option value="dark">Oscuro</option>
+                    </select>
+                </div>
+                <label class="form-label" style="margin-top: 15px;">Color Primario</label>
+                <div class="theme-colors">
+                    <div class="theme-color" data-color="default"></div>
+                    <div class="theme-color" data-color="green"></div>
+                    <div class="theme-color" data-color="pink"></div>
+                    <div class="theme-color" data-color="purple"></div>
+                    <div class="theme-color" data-color="red"></div>
+                    <div class="theme-color" data-color="blue"></div>
+                    <div class="theme-color" data-color="yellow"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Categorías Personalizadas</h2>
+            <button class="btn btn-primary" id="add-category-btn">
+                <i class="fas fa-plus"></i> Añadir
+            </button>
+        </div>
+        
+        <div class="category-list" id="category-list"></div>
+        
+        <div class="form-actions">
+            <button class="btn btn-outline" id="cancel-profile">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button class="btn btn-primary" id="save-profile">
+                <i class="fas fa-check"></i> Guardar
+            </button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="../Templates/index.html" class="nav-item" data-page="index">
+            <i class="fas fa-home nav-icon"></i>
+            <span class="nav-text">Inicio</span>
+        </a>
+        <a href="../Templates/calendar.html" class="nav-item" data-page="calendar">
+            <i class="fas fa-calendar-alt nav-icon"></i>
+            <span class="nav-text">Calendario</span>
+        </a>
+        <a href="../Templates/statistics.html" class="nav-item" data-page="statistics">
+            <i class="fas fa-chart-line nav-icon"></i>
+            <span class="nav-text">Estadísticas</span>
+        </a>
+        <a href="../Templates/profile.html" class="nav-item active" data-page="profile">
+            <i class="fas fa-user nav-icon"></i>
+            <span class="nav-text">Perfil</span>
+        </a>
+    </nav>
+
+    <div class="modal" id="category-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Nueva Categoría</h2>
+                <span class="close-modal" id="close-category-modal"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="form-group">
+                <label for="category-name" class="form-label">Nombre</label>
+                <input type="text" id="category-name" class="form-input" placeholder="Ej. Hobbies">
+            </div>
+            <div class="form-group">
+                <label for="category-icon" class="form-label">Ícono (FontAwesome)</label>
+                <input type="text" id="category-icon" class="form-input" placeholder="Ej. fa-star">
+                <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px;">
+                    <i class="fas fa-star" style="font-size: 1.5rem; cursor: pointer; color: var(--primary-color);"></i>
+                    <i class="fas fa-heart" style="font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fas fa-book" style="font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fas fa-coffee" style="font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fas fa-code" style="font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fas fa-music" style="font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-actions">
+                    <button class="btn btn-outline" id="cancel-category">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button class="btn btn-primary" id="save-category">
+                        <i class="fas fa-check"></i> Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="../js/profile.js"></script>
+</body>
+</html>
